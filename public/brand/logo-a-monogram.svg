@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 72" role="img" aria-label="Renato Giron Lopes">
+  <defs>
+    <linearGradient id="a-fiber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4dffb8"/>
+      <stop offset="1" stop-color="#1fe090"/>
+    </linearGradient>
+  </defs>
+  <!-- símbolo: nó de fibra (topologia) -->
+  <g transform="translate(36 36)">
+    <circle r="26" fill="none" stroke="#2dd4ea" stroke-width="1" opacity="0.25"/>
+    <circle r="17" fill="none" stroke="#2dd4ea" stroke-width="1" opacity="0.4"/>
+    <!-- enlaces -->
+    <g stroke="url(#a-fiber)" stroke-width="2" opacity="0.7" stroke-linecap="round">
+      <line x1="0" y1="0" x2="-20" y2="-14"/>
+      <line x1="0" y1="0" x2="21" y2="-10"/>
+      <line x1="0" y1="0" x2="16" y2="18"/>
+      <line x1="0" y1="0" x2="-14" y2="17"/>
+    </g>
+    <!-- nós satélite -->
+    <circle cx="-20" cy="-14" r="3.2" fill="#2dd4ea"/>
+    <circle cx="21" cy="-10" r="3.2" fill="#1fe090"/>
+    <circle cx="16" cy="18" r="3.2" fill="#1fe090"/>
+    <circle cx="-14" cy="17" r="3.2" fill="#2dd4ea"/>
+    <!-- nó central -->
+    <circle r="6.5" fill="url(#a-fiber)"/>
+    <circle r="6.5" fill="none" stroke="#060809" stroke-width="1.5"/>
+  </g>
+  <!-- monograma + subtítulo -->
+  <text x="78" y="40" font-family="'Space Grotesk',Inter,system-ui,sans-serif" font-size="30" font-weight="700" letter-spacing="2" fill="#eef2f0">RGL</text>
+  <text x="79" y="56" font-family="Inter,system-ui,sans-serif" font-size="9" font-weight="600" letter-spacing="3.2" fill="#869089">TELECOM · INFRA DE REDES</text>
+</svg>
