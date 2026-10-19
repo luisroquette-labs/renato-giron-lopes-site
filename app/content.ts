@@ -48,6 +48,23 @@ export const diferenciais = {
   ],
 };
 
+// Stack técnico completo — transparece toda a expertise (projeção de profile.json → expertise).
+export const stack = {
+  eyebrow: "Stack técnico",
+  title: "O arsenal de duas décadas de operação.",
+  lead: "Protocolos, equipamentos e fabricantes operados em produção, em ambientes de missão crítica.",
+  groups: [
+    { label: "Redes & Protocolos", items: ["IP", "LAN", "WAN", "TCP/IP", "MPLS", "Frame Relay", "PPP", "HDLC", "X.25"] },
+    { label: "Acesso FTTH/GPON", items: ["FTTH/GPON", "Huawei 5800", "Alcatel 7360"] },
+    { label: "Backbone Óptico", items: ["PDH", "SDH", "DWDM", "Tellabs", "Padtec", "Alcatel", "NEC"] },
+    { label: "Roteadores & Switches", items: ["Cisco", "Huawei", "Juniper", "Datacom", "Digitel", "Cyclades"] },
+    { label: "Serviços Corporativos", items: ["VPN", "Banda larga dedicada", "Circuitos de dados corporativos"] },
+    { label: "Serviços de Rede", items: ["DHCP", "NAT", "HTTP", "Roteamento IP"] },
+    { label: "Diagnóstico Óptico", items: ["Testes ópticos", "Medição de potência", "Diagnóstico de falhas em fibra"] },
+    { label: "Infra & Sistemas", items: ["Cabeamento estruturado", "Infraestrutura física", "Linux (operacional)"] },
+  ],
+};
+
 // "Como atuo" — usado apenas em /sobre.
 export const processo = {
   eyebrow: "Como atuo",

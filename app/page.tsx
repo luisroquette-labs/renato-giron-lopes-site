@@ -4,9 +4,10 @@ import SiteFooter from "../components/SiteFooter";
 import SonarGrid from "../components/SonarGrid";
 import Marquee from "../components/Marquee";
 import StatCounter from "../components/StatCounter";
+import ExpertiseIcon from "../components/ExpertiseIcon";
 import Reveal from "../components/Reveal";
 import {
-  hero, stats, diferenciais, trajetoria, oferta, contact, whatsappHref, person,
+  hero, stats, diferenciais, stack, trajetoria, oferta, contact, whatsappHref, person,
 } from "./content";
 
 export default function Home() {
@@ -38,6 +39,12 @@ export default function Home() {
 
       {/* STATS */}
       <div className="wrap">
+        <div className="stats-head">
+          <span className="stat-led" aria-hidden="true" />
+          <span>Carreira em operação contínua</span>
+          <span className="stats-head-sep">·</span>
+          <span className="muted">1994 — 2025</span>
+        </div>
         <div className="stats-row">
           {stats.map((s) => (
             <StatCounter key={s.label} n={s.n} prefix={s.prefix} suffix={s.suffix} label={s.label} />
@@ -53,12 +60,38 @@ export default function Home() {
             <h2>{diferenciais.title}</h2>
             <p className="lead">{diferenciais.lead}</p>
           </Reveal>
-          <div className="diff-grid">
-            {diferenciais.items.map((it) => (
-              <Reveal key={it.k} className="diff-card">
-                <div className="k">{it.k}</div>
-                <h3>{it.title}</h3>
-                <p>{it.body}</p>
+          <div className="bento-grid">
+            {diferenciais.items.map((it, i) => (
+              <Reveal key={it.k} className={`bento-card bento-${i}`}>
+                <div className="bento-ic"><ExpertiseIcon i={i} /></div>
+                <div className="bento-body">
+                  <div className="bento-k">{it.k}</div>
+                  <h3>{it.title}</h3>
+                  <p>{it.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STACK TÉCNICO — expertise completa por categoria */}
+      <section className="section" id="stack">
+        <div className="wrap">
+          <Reveal className="section-head">
+            <span className="eyebrow cyan">{stack.eyebrow}</span>
+            <h2>{stack.title}</h2>
+            <p className="lead">{stack.lead}</p>
+          </Reveal>
+          <div className="techstack-grid">
+            {stack.groups.map((g) => (
+              <Reveal key={g.label} className="stack-cat">
+                <h3 className="stack-cat-label">{g.label}</h3>
+                <div className="stack-chips">
+                  {g.items.map((it) => (
+                    <span key={it} className="chip">{it}</span>
+                  ))}
+                </div>
               </Reveal>
             ))}
           </div>

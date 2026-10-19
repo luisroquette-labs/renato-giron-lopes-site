@@ -48,6 +48,10 @@ export default function StatCounter({
 
   return (
     <div className="stat" ref={ref}>
+      <span className="stat-status">
+        <span className="stat-led" aria-hidden="true" />
+        ATIVO
+      </span>
       <span className="stat-n">
         {prefix}
         {value.toFixed(decimals)}

@@ -6,6 +6,7 @@ import Reveal from "../../components/Reveal";
 import ProcessFan from "../../components/ProcessFan";
 import Timeline from "../../components/Timeline";
 import { sobre, diferenciais, processo, trajetoria, credentials, whatsappHref, person } from "../content";
+import ExpertiseIcon from "../../components/ExpertiseIcon";
 
 export const metadata: Metadata = {
   title: "Sobre — Renato Giron Lopes",
@@ -42,12 +43,15 @@ export default function SobrePage() {
             <h2 style={{ fontSize: "2rem" }}>{diferenciais.title}</h2>
             <p className="lead">{diferenciais.lead}</p>
           </Reveal>
-          <div className="diff-grid">
-            {diferenciais.items.map((it) => (
-              <Reveal key={it.k} className="diff-card">
-                <div className="k">{it.k}</div>
-                <h3>{it.title}</h3>
-                <p>{it.body}</p>
+          <div className="bento-grid">
+            {diferenciais.items.map((it, i) => (
+              <Reveal key={it.k} className={`bento-card bento-${i}`}>
+                <div className="bento-ic"><ExpertiseIcon i={i} /></div>
+                <div className="bento-body">
+                  <div className="bento-k">{it.k}</div>
+                  <h3>{it.title}</h3>
+                  <p>{it.body}</p>
+                </div>
               </Reveal>
             ))}
           </div>
