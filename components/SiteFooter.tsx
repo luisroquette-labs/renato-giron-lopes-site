@@ -8,7 +8,7 @@ export default function SiteFooter() {
       <div className="wrap">
         <div className="footer-top">
           <div className="footer-col">
-            <Logo />
+            <Link href="/" aria-label="Renato Giron Lopes — início"><Logo /></Link>
             <p>{person.role}. Mais de 20 anos operando redes de missão crítica — da planta analógica ao backbone óptico nacional.</p>
           </div>
           <div className="footer-col">

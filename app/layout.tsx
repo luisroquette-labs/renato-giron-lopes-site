@@ -55,6 +55,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://luisroquette-labs.github.io/renato-giron-lopes-site"
+  ),
   title: "Renato Giron Lopes — Especialista em Telecomunicações",
   description:
     "Mais de 20 anos em redes de missão crítica — IP/MPLS, FTTH/GPON, backbone óptico (SDH/DWDM/PDH). Aberto a posições de alto nível e consultoria em telecom e transformação digital.",

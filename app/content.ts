@@ -244,6 +244,7 @@ export const contact = {
 export const nav = [
   { label: "Início", href: "/" },
   { label: "Especialidades", href: "/#expertise" },
+  { label: "Stack", href: "/#stack" },
   { label: "Trajetória", href: "/#trajetoria" },
   { label: "Consultoria", href: "/#oferta" },
   { label: "Sobre", href: "/sobre" },
