@@ -22,8 +22,8 @@ export const whatsappHref = `https://wa.me/${person.whatsapp}?text=${encodeURICo
 export const hero = {
   eyebrow: "Aberto às oportunidades certas · #OPENTOWORK",
   titleLead: "Renato Giron Lopes",
-  titleAccent: "Especialista em Telecomunicações · 20+ anos",
-  lead: "Mais de duas décadas operando, mantendo e levando ao ar redes de missão crítica — da planta analógica da Telemig ao backbone óptico nacional da V.tal. Hoje, avalia a próxima posição de alto nível e projetos de consultoria em telecom e transformação digital.",
+  titleAccent: "Especialista em Telecomunicações",
+  lead: "Mais de 20 anos mantendo no ar redes de missão crítica — da planta analógica ao backbone óptico nacional. Aberto às melhores oportunidades e a projetos de consultoria em transformação digital.",
   ctaPrimary: "Falar com Renato",
   ctaSecondary: "Ver trajetória",
 };

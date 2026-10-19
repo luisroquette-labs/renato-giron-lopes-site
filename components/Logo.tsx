@@ -11,7 +11,7 @@ export default function Logo() {
       src={`${BASE}/brand/logo-${VARIANT}.svg`}
       alt="Renato Giron Lopes"
       className="logo"
-      style={{ height: 38, width: "auto", display: "block" }}
+      style={{ height: 46, width: "auto", display: "block" }}
     />
   );
 }
