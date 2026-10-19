@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
-import SiteFooter from "../components/SiteFooter";
+import HalftoneFooter from "../components/HalftoneFooter";
 import SonarGrid from "../components/SonarGrid";
 import Marquee from "../components/Marquee";
 import StatCounter from "../components/StatCounter";
@@ -17,7 +17,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* HERO — Sonar Grid como fundo interativo (assinatura visual do site) */}
-      <SonarGrid className="hero" id="inicio" interactive color="var(--fiber)">
+      <SonarGrid className="hero" id="inicio" interactive color="var(--fiber)" data-snap>
         <div className="wrap hero-inner">
           <span className="eyebrow">{hero.eyebrow}</span>
           <h1 className="display">
@@ -33,31 +33,29 @@ export default function Home() {
         </div>
       </SonarGrid>
 
-      {/* PROVA — faixa com os empregadores */}
-      <div className="wrap" style={{ marginTop: 44 }}>
-        <Marquee items={trajetoria.marquee} />
-      </div>
-
-      {/* STATS */}
-      <div className="wrap">
-        <div className="stats-head">
-          <span className="stat-led" aria-hidden="true" />
-          <span>Carreira em operação contínua</span>
-          <span className="stats-head-sep">·</span>
-          <span className="muted">1994 — 2025</span>
+      {/* PROVA — empregadores + stats, uma tela */}
+      <section className="section screen" id="prova" data-snap>
+        <div className="wrap">
+          <Marquee items={trajetoria.marquee} />
+          <div className="stats-head" style={{ marginTop: 40 }}>
+            <span className="stat-led" aria-hidden="true" />
+            <span>Carreira em operação contínua</span>
+            <span className="stats-head-sep">·</span>
+            <span className="muted">1994 — 2025</span>
+          </div>
+          <div className="stats-row">
+            {stats.map((s) => (
+              <StatCounter key={s.label} n={s.n} prefix={s.prefix} suffix={s.suffix} label={s.label} />
+            ))}
+          </div>
         </div>
-        <div className="stats-row">
-          {stats.map((s) => (
-            <StatCounter key={s.label} n={s.n} prefix={s.prefix} suffix={s.suffix} label={s.label} />
-          ))}
-        </div>
-      </div>
+      </section>
 
       {/* APRESENTAÇÃO EM VÍDEO */}
       <VideoShowcase />
 
       {/* ESPECIALIDADES TÉCNICAS */}
-      <section className="section" id="expertise">
+      <section className="section screen" id="expertise" data-snap>
         <div className="wrap">
           <Reveal className="section-head">
             <span className="eyebrow">{diferenciais.eyebrow}</span>
@@ -80,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* STACK TÉCNICO — expertise completa por categoria */}
-      <section className="section" id="stack">
+      <section className="section screen" id="stack" data-snap>
         <div className="wrap">
           <Reveal className="section-head">
             <span className="eyebrow cyan">{stack.eyebrow}</span>
@@ -103,7 +101,7 @@ export default function Home() {
       </section>
 
       {/* TRAJETÓRIA — os 8 empregadores, resumo */}
-      <section className="section" id="trajetoria">
+      <section className="section screen" id="trajetoria" data-snap>
         <div className="wrap">
           <Reveal className="section-head">
             <span className="eyebrow">{trajetoria.eyebrow}</span>
@@ -124,7 +122,7 @@ export default function Home() {
       </section>
 
       {/* OFERTA — posição sênior ou consultoria */}
-      <section className="section" id="oferta">
+      <section className="section screen" id="oferta" data-snap>
         <div className="wrap">
           <Reveal className="section-head">
             <span className="eyebrow cyan">{oferta.eyebrow}</span>
@@ -152,7 +150,7 @@ export default function Home() {
       </section>
 
       {/* CONTATO */}
-      <section className="section" id="contato">
+      <section className="section screen" id="contato" data-snap>
         <div className="wrap">
           <Reveal className="contact-band">
             <span className="eyebrow">{contact.eyebrow}</span>
@@ -178,7 +176,7 @@ export default function Home() {
         </div>
       </section>
 
-      <SiteFooter />
+      <HalftoneFooter />
     </>
   );
 }

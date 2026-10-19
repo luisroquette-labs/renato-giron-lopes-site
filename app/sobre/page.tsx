@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "../../components/SiteHeader";
-import SiteFooter from "../../components/SiteFooter";
+import HalftoneFooter from "../../components/HalftoneFooter";
 import Reveal from "../../components/Reveal";
 import ProcessFan from "../../components/ProcessFan";
 import Timeline from "../../components/Timeline";
@@ -96,7 +96,7 @@ export default function SobrePage() {
           </p>
         </div>
       </section>
-      <SiteFooter />
+      <HalftoneFooter />
     </>
   );
 }

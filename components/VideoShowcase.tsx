@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 // autoplay muted loop dá vida; controls deixam o visitante ligar o som / pausar.
 export default function VideoShowcase() {
   return (
-    <section className="section" id="apresentacao">
+    <section className="section screen" id="apresentacao" data-snap>
       <div className="wrap">
         <Reveal className="section-head">
           <span className="eyebrow cyan">Em 20 segundos</span>

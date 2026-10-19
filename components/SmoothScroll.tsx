@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import Snap from "lenis/snap";
 import { initAudio } from "./sound";
 
 // Smooth-scroll com inércia (estilo das landing pages premium / Hotmart Launchpad).
@@ -19,6 +20,15 @@ export default function SmoothScroll() {
     });
 
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+
+    // Rolagem magnética: para em cada seção marcada com [data-snap] (uma tela por seção).
+    const snap = new Snap(lenis, {
+      type: "proximity", // snapa quando o scroll para perto de uma seção (não prende o scroll)
+      duration: 1.1,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+    const snapEls = Array.from(document.querySelectorAll<HTMLElement>("[data-snap]"));
+    snapEls.forEach((el) => snap.addElement(el, { align: ["start"] }));
 
     let raf = 0;
     const loop = (t: number) => {
@@ -50,6 +60,7 @@ export default function SmoothScroll() {
     return () => {
       cancelAnimationFrame(raf);
       document.removeEventListener("click", onClick);
+      snap.destroy();
       lenis.destroy();
     };
   }, []);
