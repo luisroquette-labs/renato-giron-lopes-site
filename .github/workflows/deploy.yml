@@ -24,8 +24,15 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - name: Build static export
-        run: npm run build
+      # Cacheia as fontes do next/font/google baixadas no build (evita re-download a cada run).
+      - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
+        with:
+          path: .next/cache
+          key: nextcache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Build static export (retry p/ flakiness de rede do next/font no CI)
+        # next/font/google baixa as fontes no build; o runner às vezes dá timeout.
+        # 3 tentativas com backoff; falha de verdade se todas falharem (não esconde erro).
+        run: npm run build || (sleep 8 && npm run build) || (sleep 16 && npm run build)
         env:
           NEXT_PUBLIC_BASE_PATH: /renato-giron-lopes-site
           NEXT_PUBLIC_SITE_URL: https://luisroquette-labs.github.io/renato-giron-lopes-site
