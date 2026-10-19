@@ -5,6 +5,7 @@ import SonarGrid from "../components/SonarGrid";
 import Marquee from "../components/Marquee";
 import StatCounter from "../components/StatCounter";
 import ExpertiseIcon from "../components/ExpertiseIcon";
+import VideoShowcase from "../components/VideoShowcase";
 import Reveal from "../components/Reveal";
 import {
   hero, stats, diferenciais, stack, trajetoria, oferta, contact, whatsappHref, person,
@@ -51,6 +52,9 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* APRESENTAÇÃO EM VÍDEO */}
+      <VideoShowcase />
 
       {/* ESPECIALIDADES TÉCNICAS */}
       <section className="section" id="expertise">
