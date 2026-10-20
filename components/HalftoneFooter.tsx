@@ -39,19 +39,18 @@ export default function HalftoneFooter() {
       o.fillStyle = "#fff";
       o.textAlign = "center";
       o.textBaseline = "middle";
-      // limita pela ALTURA também (o footer é largo e baixo) e mede a largura real,
-      // senão a base do "L" estoura as bordas e "RGL" vira "RGI". Inter é a fonte
-      // que o site carrega — 'Space Grotesk' não existe aqui e caía no fallback.
-      let size = Math.min(W * 0.4, H * 0.72);
+      // "RGL · RGL · RGL · RGL" repetido ocupando toda a faixa horizontal do rodapé
+      // (4× no desktop, 2× no mobile). O tamanho é escalado para preencher ~92% da
+      // largura e limitado pela altura. Inter é a fonte que o site carrega.
+      const reps = W > 900 ? 4 : 2;
+      const text = Array(reps).fill("RGL").join("   ·   ");
+      let size = H * 0.62;
       o.font = `800 ${size}px Inter, system-ui, sans-serif`;
-      const wText = o.measureText("RGL").width;
-      if (wText > W * 0.82) {
-        size *= (W * 0.82) / wText;
-        o.font = `800 ${size}px Inter, system-ui, sans-serif`;
-      }
-      o.fillText("RGL", W / 2, H * 0.56);
+      size = Math.min(size * (W * 0.92) / o.measureText(text).width, H * 0.64);
+      o.font = `800 ${size}px Inter, system-ui, sans-serif`;
+      o.fillText(text, W / 2, H * 0.52);
       const img = o.getImageData(0, 0, W, H).data;
-      const step = Math.max(8, Math.round(W / 150));
+      const step = Math.max(5, Math.round(W / 260));
       dots = [];
       for (let y = 0; y < H; y += step)
         for (let x = 0; x < W; x += step)
@@ -101,7 +100,7 @@ export default function HalftoneFooter() {
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
     };
-    function step() { return Math.max(8, Math.round(W / 150)); }
+    function step() { return Math.max(5, Math.round(W / 260)); }
 
     const onMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();

@@ -87,12 +87,11 @@ export default function Home() {
             <p className="lead">{stack.lead}</p>
           </Reveal>
           <div className="stack-rack">
-            {stack.groups.map((g, i) => (
+            {stack.groups.map((g) => (
               <Reveal key={g.label} className="rack-unit">
                 <div className="rack-head">
-                  <span className="rack-id">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="rack-label">{g.label}</h3>
-                  <span className="rack-status"><span className="stat-led" aria-hidden="true" />online</span>
+                  <span className="rack-count">{String(g.items.length).padStart(2, "0")}</span>
                 </div>
                 <p className="rack-items">{g.items.join("  ·  ")}</p>
               </Reveal>
