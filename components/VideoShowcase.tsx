@@ -21,7 +21,7 @@ export default function VideoShowcase() {
   };
 
   return (
-    <section className="section screen" id="apresentacao" data-snap>
+    <section className="section screen video-full" id="apresentacao" data-snap>
       <div className="video-frame">
         <video ref={hRef} className="video-h" autoPlay muted loop playsInline preload="auto" poster={`${BASE}/video/poster-16x9.jpg`}>
           <source src={`${BASE}/video/apresentacao-16x9.mp4`} type="video/mp4" />
