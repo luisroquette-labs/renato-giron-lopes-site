@@ -6,6 +6,7 @@ import Marquee from "../components/Marquee";
 import StatCounter from "../components/StatCounter";
 import ExpertiseIcon from "../components/ExpertiseIcon";
 import VideoShowcase from "../components/VideoShowcase";
+import CareerTimeline from "../components/CareerTimeline";
 import Reveal from "../components/Reveal";
 import {
   hero, stats, diferenciais, stack, trajetoria, oferta, contact, whatsappHref, person,
@@ -108,16 +109,7 @@ export default function Home() {
             <h2>{trajetoria.title}</h2>
             <p className="lead">{trajetoria.lead}</p>
           </Reveal>
-          <ol className="trajectory-list">
-            {trajetoria.items.map((t) => (
-              <Reveal as="li" key={t.company} className="trajectory-item">
-                <span className="trajectory-period">{t.period}</span>
-                <span className="trajectory-role">
-                  <b>{t.company}</b> — {t.title}
-                </span>
-              </Reveal>
-            ))}
-          </ol>
+          <CareerTimeline items={trajetoria.items} />
         </div>
       </section>
 

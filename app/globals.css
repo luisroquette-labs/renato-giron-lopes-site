@@ -116,8 +116,26 @@ img { max-width: 100%; display: block; }
   .stack-cat { padding: 12px 0; }
   .stack-cat-label { font-size: 0.64rem; margin-bottom: 8px; }
   .chip { font-size: 0.72rem; padding: 5px 11px; }
-  .trajectory-item { padding: 11px 0 !important; }
-  .trajectory-role { font-size: 0.92rem; }
+  /* trajetória: no mobile vira coluna vertical (8 marcos horizontais não cabem) */
+  .career-tl { margin-top: 28px; padding: 0 0 0 22px; }
+  .career-tl-line {
+    top: 6px; bottom: 6px; left: 6px; right: auto; width: 2px; height: auto;
+    transform: scaleY(0); transform-origin: top center;
+    background: linear-gradient(180deg, var(--fiber), var(--signal));
+  }
+  .career-tl.is-in .career-tl-line { transform: scaleY(1); }
+  .career-tl-line::before { left: 50%; top: -1px; transform: translateX(-50%); }
+  .career-tl-line::after { left: 50%; right: auto; bottom: -1px; top: auto; transform: translateX(-50%); }
+  .career-tl-track { flex-direction: column; align-items: stretch; min-height: 0; gap: 2px; }
+  .career-tl-node { flex: none; justify-content: flex-start; padding: 8px 0 8px 18px; min-height: 0; transform: translateX(10px); }
+  .career-tl.is-in .career-tl-node { transform: none; }
+  .career-tl-dot { top: 50%; left: -16px; }
+  .career-tl-connector { display: none; }
+  .career-tl-card { position: static; transform: none; width: auto; text-align: left; margin: 0 !important; gap: 1px; flex-direction: row; flex-wrap: wrap; align-items: baseline; }
+  .career-tl-year { font-size: 1.05rem; }
+  .career-tl-period { margin-left: 8px; }
+  .career-tl-company { width: 100%; margin-top: 2px; font-size: 0.86rem; }
+  .career-tl-role { width: 100%; font-size: 0.72rem; }
   .pillar { padding: 18px 18px; }
   .pillar h3 { font-size: 1.15rem; }
   .pillar p { font-size: 0.88rem; }
@@ -291,13 +309,38 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.
 @media (max-width: 760px) { .hf-cols { gap: 40px; } .hf-mark { height: 22svh; min-height: 150px; } .hf-top { gap: 28px; } }
 
 /* apresentação em vídeo — 16:9 desktop / 9:16 mobile */
-.video-frame { margin: 26px auto 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line-strong); background: #05070a; box-shadow: 0 30px 80px -40px rgba(0,0,0,0.9); width: fit-content; max-width: 100%; }
-.video-h { display: block; max-height: 58svh; max-width: 100%; width: auto; }
-.video-v { display: none; max-height: 62svh; max-width: 100%; width: auto; }
+.video-frame {
+  position: relative; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--line-strong); background: #05070a; box-shadow: 0 30px 90px -40px rgba(0,0,0,0.9);
+  aspect-ratio: 16 / 9; width: auto; height: min(84svh, calc((100vw - 8vw) * 9 / 16)); max-width: 92vw;
+}
+.video-h, .video-v { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-v { display: none; }
+/* tag discreta no canto do frame */
+.video-tag { position: absolute; top: 18px; left: 20px; z-index: 2; font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-dim); background: rgba(6,8,9,0.5); backdrop-filter: blur(6px); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); }
+/* botão grande de som no centro */
+.video-sound {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 3;
+  width: 128px; height: 128px; justify-content: center; border-radius: 999px; cursor: pointer;
+  background: rgba(6,8,9,0.42); backdrop-filter: blur(8px); border: 1px solid rgba(31,224,144,0.5);
+  color: var(--fiber); transition: all 0.3s ease;
+}
+.video-sound:hover { background: rgba(31,224,144,0.14); border-color: var(--fiber); }
+.vs-label { font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.vs-ring { position: absolute; inset: -2px; border-radius: 999px; border: 2px solid var(--fiber); opacity: 0; }
+.video-sound.is-muted .vs-ring { animation: vs-pulse 2.2s ease-out infinite; }
+@keyframes vs-pulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(1.5); opacity: 0; } }
+/* depois de ligar o som, o botão encolhe para o canto */
+.video-sound:not(.is-muted) { width: 52px; height: 52px; left: auto; right: 20px; top: auto; bottom: 20px; transform: none; gap: 0; }
+.video-sound:not(.is-muted) .vs-label { display: none; }
+.video-sound:not(.is-muted) svg { width: 24px; height: 24px; }
+@media (prefers-reduced-motion: reduce) { .video-sound.is-muted .vs-ring { animation: none; opacity: 0.4; } }
 @media (max-width: 760px) {
   .video-h { display: none; }
   .video-v { display: block; }
-  .video-frame { border-radius: var(--radius); }
+  .video-frame { aspect-ratio: 9 / 16; height: min(72svh, calc((100vw - 8vw) * 16 / 9)); border-radius: var(--radius); }
+  .video-sound { width: 100px; height: 100px; }
 }
 
 /* stack técnico — grid de categorias com chips */
@@ -712,15 +755,57 @@ input[type="range"] { min-width: 0; }
 .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--fiber); }
 @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* ---------- trajetória (lista dos 8 empregadores) ---------- */
-.trajectory-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.trajectory-item {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px;
-  padding: 20px 0; border-bottom: 1px solid var(--line);
+/* ---------- trajetória (régua horizontal, estilo hyperiux/timeline) ---------- */
+.career-tl { position: relative; margin-top: 56px; padding: 0 clamp(8px, 4vw, 48px); }
+/* linha central que preenche da esquerda p/ a direita ao entrar na viewport */
+.career-tl-line {
+  position: absolute; top: 50%; left: clamp(8px, 4vw, 48px); right: clamp(8px, 4vw, 48px);
+  height: 2px; background: linear-gradient(90deg, var(--fiber), var(--signal));
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.trajectory-period { flex: none; width: 110px; font-family: var(--font-ui); font-size: 0.82rem; color: var(--fiber); }
-.trajectory-role { color: var(--ink-dim); font-size: 0.98rem; }
-.trajectory-role b { color: var(--ink); font-weight: 600; }
+.career-tl.is-in .career-tl-line { transform: scaleX(1); }
+/* dots nas pontas da linha */
+.career-tl-line::before, .career-tl-line::after {
+  content: ""; position: absolute; top: 50%; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--fiber); transform: translateY(-50%);
+  box-shadow: 0 0 10px rgba(31, 224, 144, 0.7);
+}
+.career-tl-line::before { left: -1px; }
+.career-tl-line::after { right: -1px; background: var(--signal); box-shadow: 0 0 10px rgba(45, 212, 234, 0.7); }
+
+.career-tl-track { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; min-height: 360px; position: relative; }
+.career-tl-node {
+  flex: 1 1 0; position: relative; align-self: stretch;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition-delay: calc(var(--i) * 85ms + 0.25s);
+}
+.career-tl.is-in .career-tl-node { opacity: 1; transform: none; }
+
+.career-tl-dot {
+  position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--fiber); transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(31, 224, 144, 0.12), 0 0 16px rgba(31, 224, 144, 0.55);
+}
+.career-tl-connector {
+  position: absolute; left: 50%; width: 1px; transform: translateX(-50%);
+  background: linear-gradient(var(--line-strong), rgba(31, 224, 144, 0.5));
+}
+.career-tl-node.up .career-tl-connector { bottom: 50%; height: 46px; }
+.career-tl-node.down .career-tl-connector { top: 50%; height: 46px; transform: translateX(-50%) scaleY(1); }
+
+.career-tl-card {
+  position: absolute; left: 50%; transform: translateX(-50%); width: 168px;
+  display: flex; flex-direction: column; gap: 3px; text-align: center;
+}
+.career-tl-node.up .career-tl-card { bottom: 50%; margin-bottom: 58px; }
+.career-tl-node.down .career-tl-card { top: 50%; margin-top: 58px; }
+.career-tl-year { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.career-tl-period { font-family: var(--font-ui); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--fiber); }
+.career-tl-company { font-family: var(--font-ui); font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-top: 6px; line-height: 1.2; }
+.career-tl-role { font-family: var(--font-ui); font-size: 0.76rem; color: var(--muted); line-height: 1.3; }
 
 /* ---------- career ledger (timeline rica de /sobre, 1 bloco por empregador) ---------- */
 .ledger { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); overflow-x: clip; }

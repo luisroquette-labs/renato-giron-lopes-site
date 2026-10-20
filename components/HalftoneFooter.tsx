@@ -39,9 +39,17 @@ export default function HalftoneFooter() {
       o.fillStyle = "#fff";
       o.textAlign = "center";
       o.textBaseline = "middle";
-      const size = Math.min(W * 0.42, H * 2.0);
-      o.font = `800 ${size}px 'Space Grotesk', Inter, system-ui, sans-serif`;
-      o.fillText("RGL", W / 2, H * 0.62);
+      // limita pela ALTURA também (o footer é largo e baixo) e mede a largura real,
+      // senão a base do "L" estoura as bordas e "RGL" vira "RGI". Inter é a fonte
+      // que o site carrega — 'Space Grotesk' não existe aqui e caía no fallback.
+      let size = Math.min(W * 0.4, H * 0.72);
+      o.font = `800 ${size}px Inter, system-ui, sans-serif`;
+      const wText = o.measureText("RGL").width;
+      if (wText > W * 0.82) {
+        size *= (W * 0.82) / wText;
+        o.font = `800 ${size}px Inter, system-ui, sans-serif`;
+      }
+      o.fillText("RGL", W / 2, H * 0.56);
       const img = o.getImageData(0, 0, W, H).data;
       const step = Math.max(8, Math.round(W / 150));
       dots = [];
