@@ -113,8 +113,9 @@ img { max-width: 100%; display: block; }
   .bento-ic { width: 38px; height: 38px; }
   .bento-card h3 { font-size: 1.1rem; margin: 2px 0 4px; }
   .bento-card p { font-size: 0.86rem; }
-  .stack-cat { padding: 12px 0; }
-  .stack-cat-label { font-size: 0.64rem; margin-bottom: 8px; }
+  .rack-unit { padding: 12px 15px 13px; }
+  .rack-head { margin-bottom: 7px; gap: 8px; }
+  .rack-items { font-size: 0.78rem; line-height: 1.6; }
   .chip { font-size: 0.72rem; padding: 5px 11px; }
   /* trajetória: no mobile vira coluna vertical (8 marcos horizontais não cabem) */
   .career-tl { margin-top: 28px; padding: 0 0 0 22px; }
@@ -344,10 +345,19 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.
 }
 
 /* stack técnico — grid de categorias com chips */
-.techstack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 48px; margin-top: 10px; }
-.stack-cat { padding: 24px 0; border-top: 1px solid var(--line); }
-.stack-cat-label { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--signal); margin: 0 0 16px; }
-.stack-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+/* stack técnico: painéis "NOC rack" — cada categoria é um módulo com LED online */
+.stack-rack { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 40px; }
+.rack-unit {
+  position: relative; border: 1px solid var(--line); border-left: 2px solid rgba(31, 224, 144, 0.4);
+  border-radius: var(--radius); background: linear-gradient(180deg, rgba(31, 224, 144, 0.028), var(--bg-2));
+  padding: 16px 20px 18px; transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.rack-unit:hover { border-color: var(--line-strong); border-left-color: var(--fiber); transform: translateY(-2px); }
+.rack-head { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; }
+.rack-id { font-family: var(--font-ui); font-size: 0.68rem; color: var(--fiber); opacity: 0.5; letter-spacing: 0.1em; font-variant-numeric: tabular-nums; }
+.rack-label { font-family: var(--font-ui); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--signal); margin: 0; flex: 1; line-height: 1.2; }
+.rack-status { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-ui); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fiber); opacity: 0.85; flex: none; }
+.rack-items { margin: 0; font-family: var(--font-ui); font-size: 0.82rem; color: var(--ink-dim); line-height: 1.75; }
 
 /* bento assimétrico de especialidades */
 .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -715,7 +725,7 @@ input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius
 @media (max-width: 920px) {
   .nav-links { display: none; }
   .nav-toggle { display: inline-flex; }
-  .bento-grid, .techstack-grid, .pillars, .fan, .deck, .compare-highlights, .deck-mini, .credential-list { grid-template-columns: 1fr; }
+  .bento-grid, .stack-rack, .pillars, .fan, .deck, .compare-highlights, .deck-mini, .credential-list { grid-template-columns: 1fr; }
   .bento-0, .bento-3 { grid-column: auto; }
   .ledger-inner { margin: 0; padding-left: 14px; padding-right: 14px; }
   .automation-layout, .sim, .about { grid-template-columns: 1fr; gap: 28px; }
