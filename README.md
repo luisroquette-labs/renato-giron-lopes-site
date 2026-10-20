@@ -26,6 +26,13 @@ npm run build   # gera ./out  (export estático)
 
 O deploy para GitHub Pages é automático a cada push na `main` (ver `.github/workflows/deploy.yml`).
 
+## Clonar / recriar — **use o código, não redesenhe**
+
+Este repositório **é** o site. Quem for recriá-lo (inclusive com IA) deve **usar
+os arquivos como estão** — os componentes visuais são feitos à mão e **não devem
+ser regenerados a partir de screenshots**. O passo a passo e o prompt pronto estão
+em [`MIGRATION-PROMPT.md`](./MIGRATION-PROMPT.md).
+
 ---
 
 Feito com carinho. 🛰️
